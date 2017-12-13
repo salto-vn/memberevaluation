@@ -12,7 +12,7 @@
     "angular-mocks": "~1.6.x",
     "angular-resource": "1.6.x",
     "html5-boilerplate": "6.0.1",
-    "bootstrap": "4.0.x",
+    "bootstrap": "4.0.0-beta",
     "jquery": "3.2.x"
   }
 }
