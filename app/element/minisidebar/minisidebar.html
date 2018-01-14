@@ -1,0 +1,18 @@
+<div class="sidebar" style="display: none" layout="column" flex ng-controller="MiniSidebarController">
+    <img src="img/logo.png" style="height: 50px"/>
+    <md-list>
+        <md-item ng-repeat="menu in menus">
+            <md-button class="md-icon-button sidebar-icon" ng-click=""
+                       aria-label="Menu">
+                <md-icon class="md-accent"
+                         md-svg-icon="{{menu.icon}}"></md-icon>
+            </md-button>
+        </md-item>
+    </md-list>
+    <md-divider></md-divider>
+    <md-truncate flex></md-truncate>
+    <md-button class="md-icon-button" ng-click=""
+               aria-label="help">
+        <md-icon class="md-accent" md-svg-icon="help"></md-icon>
+    </md-button>
+</div>

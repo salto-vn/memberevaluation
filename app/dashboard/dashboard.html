@@ -1,0 +1,254 @@
+<link rel="stylesheet" href="../dashboard/dashboard.css">
+<md-content layout="row" flex ng-controller="DashboardController">
+    <div ng-include="'element/minisidebar/minisidebar.html'" layout="column"></div>
+    <div flex layout="column">
+        <div ng-include="'element/header/header.html'"></div>
+        <div class="app-body">
+
+            <!--Message-->
+            <div layout="row" layout-margin layout-sm="column" layout-xs="column">
+                <md-whiteframe id="release-area" layout-margin layout="column" class="md-whiteframe-1dp" flex="30"
+                               flex-sm="100" flex-xs="100">
+                    <md-subheader>
+                        <div layout="row">
+                            <md-icon class="title-icon" md-svg-icon="message-bulleted" aria-label="message"></md-icon>
+                            <span flex class="today-message">Release</span>
+                            <span class="today-message">{{today | date:'yyyy/MM/dd'}}</span>
+                        </div>
+                    </md-subheader>
+                    <md-list layout="column" class="no-margin">
+                        <md-list-item ng-repeat="project in releaseProjects" ng-click="null">
+                            <img ng-src="{{project.projectImg}}" height="20px" class="" alt=""/>
+                            <p class="message-content">{{project.projectName}}</p>
+                        </md-list-item>
+                    </md-list>
+                    <div layout="row" flex layout-align="bottom bottom">
+                        <md-truncate flex=""></md-truncate>
+                        <ng-md-icon icon="more_horiz" class="more-icon"></ng-md-icon>
+                    </div>
+
+                </md-whiteframe>
+                <md-whiteframe id="delay-area" layout-margin layout="column" class="md-whiteframe-1dp" flex="30"
+                               flex-sm="100" flex-xs="100">
+                    <md-subheader>
+                        <div layout="row">
+                            <md-icon class="title-icon" md-svg-icon="timer-off" aria-label="message"></md-icon>
+                            <span flex class="today-message">Delay</span>
+                        </div>
+                    </md-subheader>
+                    <md-list layout="column" class="no-margin">
+                        <md-list-item ng-repeat="project in delayProjects" flex ng-click="null">
+                            <img ng-src="{{project.projectImg}}" height="20px" class="" alt=""/>
+                            <p class="message-content">{{project.projectName}}</p>
+                        </md-list-item>
+                    </md-list>
+                    <div layout="row" flex>
+                        <md-truncate flex=""></md-truncate>
+                        <ng-md-icon icon="more_horiz" class="more-icon"></ng-md-icon>
+                    </div>
+                </md-whiteframe>
+                <md-whiteframe id="upcomming-area" layout-margin layout="column" class="md-whiteframe-1dp" flex="40"
+                               flex-sm="100" flex-xs="100">
+                    <md-subheader>
+                        <md-icon class="title-icon" md-svg-icon="calendar-text" aria-label="message"></md-icon>
+                        Upcomming Event
+                    </md-subheader>
+                    <md-list layout="column" class="no-margin">
+                        <md-list-item ng-repeat="upcommingEvent in upcommingEvents" flex
+                                      ng-click="null">
+                            <span>{{upcommingEvent.date}}</span>
+                            <img ng-src="{{upcommingEvent.projectImg}}" height="20px" class="md-avatar" alt=""/>
+                            <p>{{upcommingEvent.detail}}</p>
+                        </md-list-item>
+                    </md-list>
+                    <div layout="row" class="">
+                        <md-truncate flex=""></md-truncate>
+                        <ng-md-icon icon="more_horiz" class="more-icon"></ng-md-icon>
+                    </div>
+                </md-whiteframe>
+            </div>
+
+            <!--Project finish-->
+            <div layout="row" layout-margin layout-sm="column">
+                <md-whiteframe flex layout="column" layout-margin class="md-whiteframe-1dp">
+                    <md-subheader>
+                        <div layout="row">
+                            <span flex class="legend-label">Projects</span>
+                            <md-fab-speed-dial md-direction="left" md-open="projectIdeal.isOpen"
+                                               class="md-scale" style="height: 28px"
+                                               ng-mouseenter="projectIdeal.isOpen=true"
+                                               ng-mouseleave="projectIdeal.isOpen=false">
+                                <md-fab-trigger>
+                                    <md-button aria-label="menu" class="md-primary md-fab md-mini">
+                                        <ng-md-icon icon="view_module" class="md-warn ">
+                                        </ng-md-icon>
+                                        <md-tooltip>Setting view more</md-tooltip>
+                                    </md-button>
+                                </md-fab-trigger>
+
+                                <md-fab-actions>
+                                    <md-button aria-label="Edit" class="md-warn md-fab md-raised md-mini">
+                                        <md-icon md-svg-icon="library-plus" aria-label="Edit"></md-icon>
+                                        <md-tooltip>Add/Edit/Remove Project</md-tooltip>
+                                    </md-button>
+                                    <md-button aria-label="List Project" class="md-fab md-raised md-mini">
+                                        <md-icon md-svg-icon="format-list-bulleted" aria-label="View List Project"
+                                                 class="more-icon"></md-icon>
+                                        <md-tooltip>Show List Project</md-tooltip>
+                                    </md-button>
+                                    <md-button aria-label="Help" class="md-fab md-raised md-mini">
+                                        <md-icon md-svg-icon="help-box"
+                                                 aria-label="What" class="more-icon"></md-icon>
+                                        <md-tooltip>What is mean?</md-tooltip>
+                                    </md-button>
+                                </md-fab-actions>
+                            </md-fab-speed-dial>
+                        </div>
+                    </md-subheader>
+                    <md-content flex class="no-margin" layout="column">
+                        <div layout="row" layout-margin="" class="no-margin">
+                            <md-truncate flex=""></md-truncate>
+                            <ng-md-icon icon="lens" style="fill:#ffea81"></ng-md-icon>
+                            <span class="legend-label">Un-safe Project</span>
+                            <ng-md-icon icon="lens" style="fill:red"></ng-md-icon>
+                            <span class="legend-label">Dangerous</span>
+                            <ng-md-icon icon="lens" style="fill:green"></ng-md-icon>
+                            <span class="legend-label">Well done</span>
+                        </div>
+                        <div layout="row" flex layout-wrap>
+                            <div flex="33" layout-padding ng-repeat="project in taskProjects">
+                                <div layout="column" layout-align="center">
+                                    <canvas
+                                            id="doughnut" class="chart chart-doughnut"
+                                            chart-data="project.data" chart-labels="project.labels"
+                                            chart-colors="project.pieGraphColors" chart-options="pieGraphOptions"
+                                    >
+                                    </canvas>
+                                    <div flex style="text-align: center">
+                                        <ng-md-icon ng-if="project.status=='warning'" icon="lens" style="fill:#ffea81"
+                                                    size="18"></ng-md-icon>
+                                        <ng-md-icon ng-if="project.status=='dangerous'" icon="lens" style="fill:red"
+                                                    size="18"></ng-md-icon>
+                                        <ng-md-icon ng-if="project.status=='normal'" icon="lens" style="fill:green"
+                                                    size="18"></ng-md-icon>
+                                        {{project.projectName}}
+                                    </div>
+                                    <div id="table-data" class="table" layout="row">
+                                        <div layout="column" class="column">
+                                            <div class="cell" ng-repeat="label in project.labels;">
+                                                {{label}}
+                                            </div>
+                                        </div>
+                                        <div layout="column" class="column">
+                                            <div class="cell" ng-repeat="value in project.data">
+                                                {{value;}}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </md-content>
+                </md-whiteframe>
+            </div>
+
+            <!--Project Ideal Line-->
+            <div layout="row" flex layout-margin>
+                <md-whiteframe flex layout-margin layout="column" class="md-whiteframe-1dp">
+                    <md-subheader>
+                        <div layout="row">
+                            <span flex class="legend-label">Progress</span>
+                            <md-fab-speed-dial md-direction="left" md-open="projectProgress.isOpen"
+                                               class="md-scale" style="height: 28px"
+                                               ng-mouseenter="projectProgress.isOpen=true"
+                                               ng-mouseleave="projectProgress.isOpen=false">
+                                <md-fab-trigger>
+                                    <md-button aria-label="menu" class="md-primary md-fab md-mini">
+                                        <ng-md-icon icon="view_module" class="md-warn ">
+                                        </ng-md-icon>
+                                        <md-tooltip>Setting view more</md-tooltip>
+                                    </md-button>
+                                </md-fab-trigger>
+
+                                <md-fab-actions>
+                                    <md-button aria-label="Edit" class="md-warn md-fab md-raised md-mini">
+                                        <md-icon md-svg-icon="library-plus" aria-label="Edit"></md-icon>
+                                        <md-tooltip>Add/Edit/Remove Project</md-tooltip>
+                                    </md-button>
+                                    <md-button aria-label="List Project" class="md-fab md-raised md-mini">
+                                        <md-icon md-svg-icon="format-list-bulleted" aria-label="View List Project"
+                                                 class="more-icon"></md-icon>
+                                        <md-tooltip>Show List Project</md-tooltip>
+                                    </md-button>
+                                    <md-button aria-label="Help" class="md-fab md-raised md-mini">
+                                        <md-icon md-svg-icon="help-box"
+                                                 aria-label="What" class="more-icon"></md-icon>
+                                        <md-tooltip>What is mean?</md-tooltip>
+                                    </md-button>
+                                </md-fab-actions>
+                            </md-fab-speed-dial>
+
+                        </div>
+                    </md-subheader>
+                    <md-content flex layout="column">
+                        <div layout="row" class="no-margin" layout-margin="">
+                            <md-truncate flex=""></md-truncate>
+                            <ng-md-icon icon="show_chart" style="fill:{{burndownCharts[0].colors[0]}}"
+                                        class=""></ng-md-icon>
+                            <span class="legend-label">Ideal Line(Estimate)</span>
+                            <ng-md-icon icon="show_chart" style="fill:{{burndownCharts[0].colors[1]}}"
+                                        class=""></ng-md-icon>
+                            <span class="legend-label">Actual Line</span>
+                        </div>
+                        <div layout="row" flex layout-wrap class="no-margin">
+                            <div flex="33" layout="column" layout-padding ng-repeat="burndown in burndownCharts">
+                                <canvas id="line" class="chart chart-line no-margin" chart-data="burndown.data"
+                                        chart-labels="burndown.labels" chart-series="burndown.series"
+                                        chart-options="burndown.options"
+                                        chart-dataset-override="burndown.datasetOverride"
+                                        chart-click="burndownChartOnClick"
+                                        chart-colors="burndown.colors">
+                                </canvas>
+                                <div flex style="text-align: center" class="no-margin">
+                                    {{burndown.projectName}}
+                                </div>
+                            </div>
+                        </div>
+
+                </md-whiteframe>
+            </div>
+
+            <!--Evaluation-->
+            <div layout="row" flex layout-margin>
+                <md-whiteframe flex layout="column" class="md-whiteframe-1dp">
+                    <md-subheader>Evaluation</md-subheader>
+                    <md-content flex layout="column">
+                        <div layout="row" class="no-margin" layout-margin="">
+                            <md-truncate flex=""></md-truncate>
+                            <div ng-repeat="color in barCharts[0].colors track by $index">
+                                <md-icon md-svg-icon="square" style="fill:{{color}}"></md-icon>
+                                <span class="legend-label">{{barCharts[0].series[$index]}}</span>
+                            </div>
+                        </div>
+                        <div layout="row" flex layout-wrap class="no-margin">
+                            <div flex="50" layout="column" layout-padding ng-repeat="barEvaluation in barCharts">
+                                <canvas id="bar" class="chart chart-bar"
+                                        chart-data="barEvaluation.data" chart-labels="barEvaluation.labels"
+                                        chart-series="barEvaluation.series"
+                                        chart-options="barEvaluation.options"
+                                        chart-colors="barEvaluation.colors"
+                                        chart-dataset-override="barEvaluation.datasetOverride">
+                                </canvas>
+                                <div flex style="text-align: center" class="no-margin">
+                                    {{barEvaluation.quater}}
+                                </div>
+                            </div>
+                        </div>
+
+                </md-whiteframe>
+            </div>
+
+        </div>
+    </div>
+</md-content>

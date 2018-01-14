@@ -1,18 +1,55 @@
 <link rel="stylesheet" href="../login/login.css">
-<div class="container" ng-controller="LoginController">
-
-    <form class="form-signin" name="loginForm">
-        <h2 class="form-signin-heading">Please sign in</h2>
-        <label for="inputEmail" class="sr-only">Email address</label>
-        <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
-        <label for="inputPassword" class="sr-only">Password</label>
-        <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
-        <div class="checkbox">
-            <label>
-                <input type="checkbox" value="remember-me"> Remember me
-            </label>
+<div class="login" layout="column" flex>
+    <div layout="row" class="content" layout-xs="column" ng-controller="LoginController">
+        <div flex="60">
         </div>
-        <button class="btn btn-lg btn-primary btn-block" type="submit" ng-click="login(loginForm.$valid)">Sign in</button>
-    </form>
+        <div flex="40" class="login-form">
+            <md-content layout-align="center center" class="md-no-momentum" layout="vertical" id="content">
+                <div layout="row" layout-align="center center" layout-fill>
+                    <div flex="100">
+                        <md-whiteframe class="md-whiteframe-z1" layout="column" layout-padding layout-margin="">
+                            <form name="loginForm">
+                                <md-content>
+                                    <div class="login-form-title">
+                                        <span class="md-headline">Login</span>
+                                    </div>
+                                    <md-input-container class="md-icon-float md-block">
+                                        <!-- Use floating label instead of placeholder -->
+                                        <label>Email</label>
+                                        <md-icon md-svg-src="account"></md-icon>
+                                        <input ng-model="user.email" type="text">
+                                    </md-input-container>
 
-</div> <!-- /container -->
+                                    <md-input-container class="md-icon-float md-block">
+                                        <label>Password</label>
+                                        <md-icon md-svg-src="lock-open-outline"></md-icon>
+                                        <input ng-model="user.password" type="password">
+                                    </md-input-container>
+                                    <div layout="row" layout-xs="column" layout-align="center center" layout-fill>
+                                        <md-button class="btn-main md-raised md-primary" flex="50" flex-xs="100"
+                                                   ng-click="login(loginForm.$valid)">Login
+                                        </md-button>
+                                        <!--<md-button class="btn-main md-raised md-primary" flex="50" flex-xs="100">Register</md-button>-->
+                                    </div>
+                                </md-content>
+                            </form>
+                        </md-whiteframe>
+                    </div>
+                </div>
+            </md-content>
+            <!--<form class="form-signin" name="loginForm">-->
+            <!--<h2 class="form-signin-heading">Please sign in</h2>-->
+            <!--<label for="inputEmail" class="sr-only">Email address</label>-->
+            <!--<input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>-->
+            <!--<label for="inputPassword" class="sr-only">Password</label>-->
+            <!--<input type="password" id="inputPassword" class="form-control" placeholder="Password" required>-->
+            <!--<div class="checkbox">-->
+            <!--<label>-->
+            <!--<input type="checkbox" value="remember-me"> Remember me-->
+            <!--</label>-->
+            <!--</div>-->
+            <!--<button class="btn btn-lg btn-primary btn-block" type="submit" ng-click="login(loginForm.$valid)">Sign in</button>-->
+            <!--</form>-->
+        </div>
+    </div>
+</div>

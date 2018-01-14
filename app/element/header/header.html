@@ -1,0 +1,16 @@
+<md-toolbar ng-if="isLogin" class="header md-accent md-whiteframe-1dp" ng-controller="HeaderController">
+    <div class="md-toolbar-tools">
+        <ng-md-icon icon="{{mainicon}}" options='{"rotation": "counterclock"}'
+                    ng-click="showMiniBar();"></ng-md-icon>
+
+        <h2 flex md-truncate></h2>
+
+        <span id="username">{{user.name}}</span>
+        <img ng-src="{{user.picture}}" class="md-avatar" alt="{{user.name}}">
+
+        <md-button class="md-icon-button" aria-label="More">
+            <md-icon md-svg-icon="dots-vertical" class="md-accent"></md-icon>
+        </md-button>
+
+    </div>
+</md-toolbar>

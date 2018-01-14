@@ -1,25 +1,53 @@
 /* app css stylesheet */
 
-.menu {
-  list-style: none;
-  border-bottom: 0.1em solid black;
-  margin-bottom: 2em;
-  padding: 0 0 0.5em;
+.no-margin{
+    margin: 0px !important;
+    padding-left: 5px!important;
+    padding-right: 0px!important;
+    padding-top: 0px;
+    padding-bottom: 0px;
 }
 
-.menu:before {
-  content: "[";
+.no-padding {
+    padding: 0px!important;
 }
 
-.menu:after {
-  content: "]";
+.sidebar {
+    width: 50px;
+    background-color: #009688;
 }
 
-.menu > li {
-  display: inline;
+.sidebar .topbutton {
+    margin-top: 5px!important;
 }
 
-.menu > li + li:before {
-  content: "|";
-  padding-right: 0.3em;
+.app-body {
+    width: 100%;
+    background-color: white;
+    overflow: auto;
 }
+
+.header {
+    height: 50px!important;
+}
+.logo {
+    width: 64px;
+    height: 64px;
+}
+
+md-content{
+    color: #696e74;
+    font-size: 13px;
+    background-color: #FFFFFF;
+}
+
+.more-icon {
+    fill:#696e74;
+}
+
+.more-icon:hover {
+    fill:#009688;
+    cursor: pointer;
+}
+
+

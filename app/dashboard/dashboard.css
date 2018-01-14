@@ -1,0 +1,46 @@
+.sidebar-icon{
+    margin-top: 8px;
+}
+
+.message {
+    height: 100px;
+}
+
+.title-icon{
+    padding-right: 3px;
+}
+.md-datepicker-input-container {
+     margin-left: 0px!important;
+}
+.today-message{
+    padding: 3px;
+}
+.message-content {
+    margin-left: 15px!important;
+}
+
+/*.md-list-item-text {*/
+    /*color: #696e74;*/
+/*}*/
+
+.table {
+    align-self: center;
+}
+
+.table>.column>.cell {
+    min-width: 100px;
+    max-width: 100%;
+    padding-top: 5px;
+    padding-bottom: 4px;
+    border-top: solid 1px #b3bdc6;
+}
+
+.legend-label {
+    padding-top: 5px;
+    margin-left: 0px;
+}
+
+/*md-subheader {*/
+    /*padding:10px;*/
+/*}*/
+

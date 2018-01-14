@@ -1,0 +1,37 @@
+<link rel="stylesheet" href="element/navibar/navibar.css">
+
+<div  layout="row" flex>
+        <md-sidenav md-whiteframe="1" class="md-sidenav-left" md-component-id="left" md-is-locked-open="lockLeft">
+            <md-toolbar>
+                <div class="md-toolbar-tools">
+                    <img src="img/logo.png" style="height: 50px"/>
+                    <span>DASHBOARD</span>
+                    <md-truncate flex=""></md-truncate>
+                </div>
+            </md-toolbar>
+            <md-content flex layout="column">
+                <md-list>
+                    <md-list-item ng-repeat="menu in menus" flex="" class="no-margin">
+                        <md-button class="no-margin" layout="row" style="width: 100%">
+                            <md-icon class="md-primary" md-svg-icon="{{menu.icon}}"></md-icon>
+                            <span flex class="menu-name">{{menu.name}}</span>
+                        </md-button>
+                        <md-button class="md-icon-button">
+                            <md-icon md-svg-icon="chevron-right" class="md-primary"></md-icon>
+                        </md-button>
+                    </md-list-item>
+                </md-list>
+                <md-divider></md-divider>
+                <md-truncate flex></md-truncate>
+                <div layout="row">
+                    <span flex></span>
+                    <div layout="row">
+                        <md-button ng-click="" aria-label="support">
+                            <md-icon class="md-primary" md-svg-icon="help"></md-icon>
+                            <span class="menu-name">help</span>
+                        </md-button>
+                    </div>
+                </div>
+            </md-content>
+        </md-sidenav>
+</div>
