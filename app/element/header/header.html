@@ -1,15 +1,16 @@
-<md-toolbar ng-if="isLogin" class="header md-accent md-whiteframe-1dp" ng-controller="HeaderController">
-    <div class="md-toolbar-tools">
+<md-toolbar ng-if="isLogin" class="header md-whiteframe-1dp" ng-controller="HeaderController">
+    <div class="md-toolbar-tools" layout="row">
         <ng-md-icon icon="{{mainicon}}" options='{"rotation": "counterclock"}'
-                    ng-click="showMiniBar();"></ng-md-icon>
+                    ng-click="toggleLeft()" class="md-primary"></ng-md-icon>
 
-        <h2 flex md-truncate></h2>
+        <div flex style="text-align: center" ng-hide="lockLeft" class="md-primary">{{headerTitle}}</div>
+        <div flex ng-hide="!lockLeft"></div>
 
-        <span id="username">{{user.name}}</span>
-        <img ng-src="{{user.picture}}" class="md-avatar" alt="{{user.name}}">
+        <span id="username" >{{user.name}}</span>
+        <img ng-src="{{user.picture}}"  alt="{{user.name}}">
 
-        <md-button class="md-icon-button" aria-label="More">
-            <md-icon md-svg-icon="dots-vertical" class="md-accent"></md-icon>
+        <md-button class="md-icon-button"  aria-label="More">
+            <md-icon md-svg-icon="dots-vertical" class="md-primary"></md-icon>
         </md-button>
 
     </div>

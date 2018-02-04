@@ -19,28 +19,18 @@
     margin-left: 15px!important;
 }
 
-/*.md-list-item-text {*/
-    /*color: #696e74;*/
-/*}*/
 
-.table {
-    align-self: center;
+.md-card-margin{
+    margin-bottom: 0px !important;
+    margin-right: 0px !important;
+    margin-left: 0px !important;
 }
 
-.table>.column>.cell {
-    min-width: 100px;
-    max-width: 100%;
-    padding-top: 5px;
-    padding-bottom: 4px;
-    border-top: solid 1px #b3bdc6;
+.md-card-no-margin-top {
+    margin-top: 0px;
 }
 
-.legend-label {
-    padding-top: 5px;
-    margin-left: 0px;
+.priority-high {
+    color: red;
 }
-
-/*md-subheader {*/
-    /*padding:10px;*/
-/*}*/
 

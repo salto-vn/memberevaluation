@@ -1,0 +1,76 @@
+<link rel="stylesheet" href="../project/members/projectmembers.css">
+<div layout="column" ng-controller="ProjectMembersController">
+    <div layout="column" layout-padding>
+        <md-table-container>
+            <table md-table ng-model="selected" id="members">
+                <thead layout="row" layout-align="end end">
+                <span flex></span>
+                <md-input-container class="md-block">
+                    <md-icon md-svg-icon="magnify"></md-icon>
+                    <input ng-model="filter.freeword" type="text" placeholder="Filter">
+                </md-input-container>
+                </thead>
+                <tbody md-body>
+                <tr ng-click="openMember(member)" md-row md-select="member" md-select-id="id"
+                    ng-repeat="member in members | filter: filter.freeword
+                                                | orderBy: query.order | limitTo: query.limit : (query.page -1) * query.limit">
+                    <td md-cell layout="row">
+                        <div style="padding-top: 5px" layout="column">
+                            <img src="../../img/noimage.png" height="50"/>
+                            <div ng-repeat="rating in ratings">
+                                <!--<div star-rating rating-value="rating.current" max="rating.max" on-rating-selected="getSelectedRating(rating)"></div>-->
+                                <div star-rating rating-value="rating.current" max="rating.max"></div>
+                            </div>
+                        </div>
+                        <div layout="column">
+                            <div layout="row" class="no-padding" layout-padding>
+                                <div layout="row" class="row-item">
+                                    <md-icon class="cell-icon" md-svg-icon="barcode"></md-icon>
+                                    <span class="cell-value">{{member.id}}</span>
+                                </div>
+                                <div layout="row" class="row-item">
+                                    <md-icon class="cell-icon" md-svg-icon="account"></md-icon>
+                                    <span class="cell-value">{{member.name}}</span>
+                                </div>
+                                <div layout="row" class="row-item">
+                                    <md-icon class="cell-icon" md-svg-icon="barcode"></md-icon>
+                                    <span class="cell-value">{{member.role}}</span>
+                                </div>
+                                <div layout="row" class="row-item">
+                                    <md-icon class="cell-icon" md-svg-icon="barcode"></md-icon>
+                                    <span class="cell-value">{{member.point}}</span>
+                                </div>
+                                <div layout="row" class="row-item">
+                                    <md-icon class="cell-icon" md-svg-icon="barcode"></md-icon>
+                                    <span class="cell-value">{{member.email}}</span>
+                                </div>
+                            </div>
+                            <div layout="row" class="no-padding" layout-padding>
+                                <div layout="row" class="row-item">
+                                    <md-icon class="cell-icon" md-svg-icon="barcode"></md-icon>
+                                    <span class="cell-value">{{member.tasks}} Tasks</span>
+                                </div>
+                                <div layout="row" class="row-item">
+                                    <md-icon class="cell-icon" md-svg-icon="barcode"></md-icon>
+                                    <span class="cell-value">{{member.bugs}} Bugs</span>
+                                </div>
+                                <div layout="row" class="row-item">
+                                    <md-icon class="cell-icon" md-svg-icon="barcode"></md-icon>
+                                    <span class="cell-value">{{member.qas}} Questions</span>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </md-table-container>
+
+        <md-table-pagination md-limit="query.limit" md-limit-options="[5, 10, 15]"
+                             md-page="query.page" md-total="{{members.count}}"
+                             md-on-paginate="getTickets" md-page-select></md-table-pagination>
+    </div>
+
+</div>

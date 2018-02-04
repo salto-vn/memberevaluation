@@ -1,0 +1,29 @@
+<md-content layout="row" flex ng-controller="ProjectController">
+    <!--<div ng-include="'element/minisidebar/minisidebar.html'" layout="column"></div>-->
+    <div flex layout="column">
+        <div ng-include="'element/header/header.html'"></div>
+        <div class="app-body">
+            <md-content>
+                <md-nav-bar
+                        md-no-ink-bar="false"
+                        md-selected-nav-item="currentNavItem"
+                        nav-bar-aria-label="navigation links">
+                    <md-nav-item md-nav-sref="project.summary" name="Home">Home</md-nav-item>
+                    <md-nav-item md-nav-sref="project.quality" name="Quality">Quality</md-nav-item>
+                    <md-nav-item md-nav-sref="project.members" name="Member">Members</md-nav-item>
+                    <md-nav-item md-nav-sref="project.tasks" name="Task">Tasks</md-nav-item>
+                    <md-nav-item md-nav-click="goto('page4')" name="Progress">
+                        Progress
+                    </md-nav-item>
+                    <md-nav-item md-nav-click="goto('page5')" name="WorkingTime">
+                        Working Time
+                    </md-nav-item>
+                    <md-nav-item md-nav-click="goto('page6')" name="Setting">
+                        Setting
+                    </md-nav-item>
+                </md-nav-bar>
+                <ui-view></ui-view>
+            </md-content>
+        </div>
+    </div>
+</md-content>

@@ -5,8 +5,14 @@ angular.module('memberevaluation.navibar', ['memberevaluation.menus'])
         , ['$scope','$rootScope', '$location', '$mdSidenav', '$mdUtil', '$timeout','MenuService',
             function ($scope, $rootScope, $location, $mdSidenav, $mdUtil, $timeout, MenuService) {
                 $scope.menus = MenuService.getAllMenus();
-                $scope.toggleLeft = buildToggler('left');
-                $scope.mainicon = 'arrow_back';
+                $rootScope.toggleLeft = buildToggler('left');
+                $scope.lockLeft = false;
+                $scope.mainicon = 'menu';
+                // function buildToggler(componentId) {
+                //     return function () {
+                //         $mdSidenav(componentId).toggle();
+                //     };
+                // }
                 function buildToggler(navID) {
                     var debounceFn = $mdUtil.debounce(function () {
                         $mdSidenav(navID)
@@ -14,27 +20,30 @@ angular.module('memberevaluation.navibar', ['memberevaluation.menus'])
                             .then(function () {
                                 console.log("toggle " + navID + " is done");
                             });
-                    }, 300);
+                    }, 100);
                     return debounceFn;
                 }
+
+                $rootScope.navibarClose = function () {
+                    $mdSidenav('left').close()
+                        .then(function () {
+                            console.log("close LEFT is done");
+                        });
+
+                };
 
                 $rootScope.$on("CallParentMethod", function(){
                     $scope.showMiniBar();
                 });
 
                 $scope.showMiniBar = function () {
-                    var sidebar = angular.element('.sidebar');
                     $scope.mainicon = $scope.mainicon === "arrow_back" ? "menu" : "arrow_back";
-                    if ($scope.lockLeft) {
-                        $timeout(function () {
-                            sidebar[0].style.display = "";
-
-                        }, 300);
-                    } else {
-                        sidebar[0].style.display = "none";
-                    }
                     $scope.lockLeft=!$scope.lockLeft;
                 };
 
+                $rootScope.go = function ( path ) {
+                    $location.path( path );
+                    $scope.lockLeft=false;
+                };
 
             }]);

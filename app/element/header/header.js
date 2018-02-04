@@ -11,8 +11,7 @@ angular.module('memberevaluation.header', ['memberevaluation.menus'])
                     "phone": "0909-123-091",
                     "picture":"/img/avatar/avatar.png"
                 };
-                $scope.mainicon = 'arrow_back';
-
+                $scope.mainicon = 'menu';
                 $scope.showMiniBar = function () {
                     $rootScope.$emit("CallParentMethod", {});
                     $scope.mainicon = $scope.mainicon === "arrow_back" ? "menu" : "arrow_back";

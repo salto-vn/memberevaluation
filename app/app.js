@@ -6,57 +6,79 @@ angular.module('memberevaluation', [
     'ngMaterial',
     'ngMdIcons',
     'chart.js',
+    'md.data.table',
     'memberevaluation.login',
     'memberevaluation.navibar',
     'memberevaluation.header',
     'memberevaluation.dashboard',
+    'memberevaluation.projectquality',
+    'memberevaluation.projectsummary',
     'memberevaluation.minisidebar',
-    'memberevaluation.menus'
+    'memberevaluation.menus',
+    'memberevaluation.project',
+    'memberevaluation.projectmembers',
+    'memberevaluation.starRating'
 ])
-    .config(['$locationProvider', '$urlRouterProvider','$stateProvider', function ($locationProvider, $urlRouterProvider,$stateProvider) {
-        // $locationProvider.hashPrefix('!');
+    .config(['$locationProvider', '$urlRouterProvider', '$stateProvider', function ($locationProvider, $urlRouterProvider, $stateProvider) {
+        $locationProvider.hashPrefix('!');
         $urlRouterProvider.otherwise('/');
 
         $stateProvider
-            .state('login',{
-                url:'/login',
+            .state({
+                name: 'login',
+                url: '/login',
                 templateUrl: 'login/login.html',
-                controller:'LoginController'
+                controller: 'LoginController'
             })
-            .state('dashboard',{
-                url:'/dashboard',
+            .state({
+                name: 'dashboard',
+                url: '/dashboard',
                 templateUrl: 'dashboard/dashboard.html',
-                controller:'DashboardController'
+                controller: 'DashboardController'
+            })
+            .state({
+                name: 'project',
+                url: '/project/:id',
+                templateUrl: 'project/project.html',
+            })
+            .state({
+                name: 'project.summary',
+                url: '/summary',
+                templateUrl: 'project/summary/projectsummary.html',
+                controller: 'ProjectSummaryController'
+            })
+            .state({
+                name: 'project.quality',
+                url: '/quality',
+                templateUrl: 'project/quality/projectquality.html',
+                controller: 'ProjectQualityController'
+            })
+            .state({
+                name: 'project.members',
+                url: '/members',
+                templateUrl: 'project/members/projectmembers.html',
+                controller: 'ProjectMembersController'
             });
-
-        // $urlRouterProvider.when('/login', {
-        //     templateUrl: 'login/login.html',
-        //     controller: 'LoginController'
-        // });
-        // $urlRouterProvider.when('/dashboard', {
-        //     templateUrl: 'dashboard/navibar.html',
-        //     controller: 'DashboardController'
-        // });
-
     }])
     .config(function ($mdThemingProvider) {
         $mdThemingProvider.theme('default')
             .primaryPalette('teal', {
                 'default': '500',
+                'hue-1': '100',
+                'hue-2': '200',
+                'hue-3': '300',
             })
-            .accentPalette('grey',{'default': '50',});
-            // .warnPalette('brown',{'default': '500',});
+            .backgroundPalette('grey', {
+                'default': '50'
+            });
+        // .accentPalette('grey',{'default': '50',});
+        // .warnPalette('brown',{'default': '500',});
     })
     .config(['$mdIconProvider', function ($mdIconProvider) {
         $mdIconProvider.defaultIconSet('img/icons/mdi.svg');
-        // $mdIconProvider.icon('close', 'img/icons/ic_close_24px.svg');
-        // $mdIconProvider.icon('menu', 'img/icons/menu.svg');
-        // $mdIconProvider.icon('favorite', 'img/icons/favorite.svg');
-        // $mdIconProvider.icon('option', 'img/icons/more_vert.svg');
-
     }])
-    .config(function (ChartJsProvider) {
-        ChartJsProvider.setOptions({ colors : [ '#803690', '#00ADF9', '#DCDCDC', '#46BFBD', '#FDB45C', '#949FB1', '#4D5360'] });
-    })
+    .config(['ChartJsProvider', function (ChartJsProvider) {
+        ChartJsProvider.setOptions({colors: ['#803690', '#00ADF9', '#DCDCDC', '#46BFBD', '#FDB45C', '#949FB1', '#4D5360']});
+    }])
 ;
 

@@ -1,0 +1,124 @@
+<link rel="stylesheet" href="../project/quality/projectquality.css">
+<div layout="column" ng-controller="ProjectQualityController">
+
+    <div layout="row" layout-margin style="margin-bottom: 0px">
+        <!--Remaining Bugs-->
+        <div flex="55" layout="column" class="md-whiteframe-1dp">
+            <div class="panel-header" layout="row">
+                <span flex>Remain Bugs</span>
+                <ng-md-icon class="help-icon" icon="info_outline"></ng-md-icon>
+            </div>
+            <div id="remain-bug" layout-padding>
+                <canvas id="line" class="chart chart-line" chart-data="project.remainBugChart.data"
+                        chart-labels="project.remainBugChart.labels" chart-series="project.remainBugChart.series"
+                        chart-options="project.remainBugChart.options"
+                        chart-colors="project.remainBugChart.colors"
+                        chart-dataset-override="project.remainBugChart.datasetOverride" chart-click="chartOnClick">
+                </canvas>
+            </div>
+        </div>
+
+        <!--Type of Bugs-->
+        <div flex layout="column" class="md-whiteframe-1dp">
+            <div class="panel-header" layout="row">
+                <span flex>Type of Bugs</span>
+                <ng-md-icon class="help-icon" icon="info_outline"></ng-md-icon>
+            </div>
+            <div id="bug-type" flex layout-padding layout="row">
+                <canvas id="pie" class="chart chart-pie"
+                        chart-data="project.bugTypePieChart.data" chart-labels="project.bugTypePieChart.labels"
+                        chart-options="project.bugTypePieChart.options"
+                        chart-colors="project.bugTypePieChart.pieGraphColors"
+                >
+                </canvas>
+            </div>
+        </div>
+    </div>
+
+    <div layout="row" layout-margin style="margin-bottom: 0px">
+        <!--Reporter Bug-->
+        <div flex layout="column" class="md-whiteframe-1dp">
+            <div class="panel-header" layout="row">
+                <span flex>By Reporter</span>
+                <ng-md-icon class="help-icon" icon="info_outline"></ng-md-icon>
+            </div>
+            <div id="report-by" layout-padding>
+                <canvas id="pie-report-by" class="chart chart-pie"
+                        chart-data="project.reportByPieChart.data" chart-labels="project.reportByPieChart.labels"
+                        chart-options="project.reportByPieChart.options"
+                        chart-colors="project.reportByPieChart.pieGraphColors">
+                </canvas>
+            </div>
+        </div>
+
+        <!--Number of bugs per spec, page-->
+        <div flex="55" layout="column" class="md-whiteframe-1dp">
+            <div class="panel-header" layout="row">
+                <span flex>N.o bugs</span>
+                <div layout="row">
+                    <md-select placeholder="Report by" ng-model="reportBy" class="no-margin">
+                        <md-option value="spec">By Spec</md-option>
+                        <md-option value="page">By Module</md-option>
+                    </md-select>
+                    <ng-md-icon class="help-icon" icon="info_outline"></ng-md-icon>
+                </div>
+            </div>
+            <div id="bugs-per-spec-page" layout-padding>
+                <div layout="row">
+                    <canvas ng-if="reportBy=='spec'" id="bug-by-spec-bar" class="chart chart-bar"
+                            chart-data="project.bugBySpecBarChart.data"
+                            chart-labels="project.bugBySpecBarChart.labels"
+                            chart-series="project.bugBySpecBarChart.series"
+                            chart-options="project.bugBySpecBarChart.options"
+                            chart-colors="project.bugBySpecBarChart.colors"
+                            chart-dataset-override="project.bugBySpecBarChart.datasetOverride">
+                    </canvas>
+                    <canvas ng-if="reportBy=='page'" id="bug-by-module-bar" class="chart chart-bar"
+                            chart-data="project.bugByModuleBarChart.data"
+                            chart-labels="project.bugByModuleBarChart.labels"
+                            chart-series="project.bugByModuleBarChart.series"
+                            chart-options="project.bugByModuleBarChart.options"
+                            chart-colors="project.bugByModuleBarChart.colors"
+                            chart-dataset-override="project.bugByModuleBarChart.datasetOverride">
+                    </canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div layout="row" layout-margin style="margin-top: 0px">
+        <div class="md-whiteframe-1dp" layout="column" flex="" layout-align="center">
+            <div class="panel-header">By Developer</div>
+            <div layout="row" layout-padding>
+                <canvas height="90px" id="bug-by-dev" class="chart chart-bar"
+                        chart-data="project.bugByDevBarChart.data"
+                        chart-labels="project.bugByDevBarChart.labels"
+                        chart-series="project.bugByDevBarChart.series"
+                        chart-options="project.bugByDevBarChart.options"
+                        chart-colors="project.bugByDevBarChart.colors"
+                        chart-dataset-override="project.bugByDevBarChart.datasetOverride">
+                </canvas>
+            </div>
+            <div>
+                <div layout="column" layout-padding>
+                    <md-table-container>
+                        <table md-table>
+                            <thead  md-head class="table-header">
+                                <tr md-row>
+                                    <td></td>
+                                    <td ng-if="hideTypes.indexOf(bug.name)<0" md-column ng-repeat="bug in bugsByDev[0].bugs track by $index">{{bug.name}}</td>
+                                </tr>
+                            </thead>
+                            <tbody md-body>
+                            <tr md-row ng-repeat="dev in bugsByDev">
+                                <td md-cell>{{dev.name}}</td>
+                                <td md-cell ng-if="hideTypes.indexOf(bug.name)<0" ng-repeat="bug in dev.bugs">{{bug.value}}</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </md-table-container>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

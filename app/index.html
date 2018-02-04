@@ -17,6 +17,8 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,400italic">
     <link rel="stylesheet" href="bower_components/angular-material/angular-material.css">
     <link rel="stylesheet" href="bower_components/angular-material-icons/angular-material-icons.css">
+    <link rel="stylesheet" href="bower_components/angular-material-data-table/dist/md-data-table.css">
+    <link rel="stylesheet" href="project/quality/projectquality.css">
 
 
 
@@ -32,7 +34,7 @@
 <![endif]-->
 <div ng-if="isLogin" ng-controller="NaviBarController" ng-include="'element/navibar/navibar.html'"
      layout="column"></div>
-<div ui-view="" layout="column" flex></div>
+<div ui-view="" layout="column" flex ng-click="navibarClose()"></div>
 
 <!-- In production use:
 <script src="//ajax.googleapis.com/ajax/libs/angularjs/x.x.x/angular.min.js"></script>
@@ -50,6 +52,8 @@
 <script src="http://cdnjs.cloudflare.com/ajax/libs/SVG-Morpheus/0.3.2/svg-morpheus.js"></script>
 <script src="bower_components/chart.js/dist/Chart.js"></script>
 <script src="bower_components/angular-chart.js/angular-chart.js"></script>
+<script src="bower_components/angular-material-data-table/dist/md-data-table.js"></script>
+<script src="bower_components/Chart.PieceLabel.js/src/Chart.PieceLabel.js"></script>
 <script src="app.js"></script>
 <script src="login/login.js"></script>
 <script src="element/menu/MenuService.js"></script>
@@ -57,6 +61,11 @@
 <script src="element/header/header.js"></script>
 <script src="element/minisidebar/minisidebar.js"></script>
 <script src="dashboard/dashboard.js"></script>
+<script src="project/summary/projectsummary.js"></script>
+<script src="project/quality/projectquality.js"></script>
+<script src="project/members/projectmembers.js"></script>
+<script src="element/directive/starrating.js"></script>
+<script src="project/project.js"></script>
 <script src="components/version/interpolate-filter.js"></script>
 </body>
 </html>

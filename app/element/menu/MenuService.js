@@ -9,44 +9,59 @@ angular.module('memberevaluation.menus',[])
 function MenuService() {
     var menus = [
         {
-            id: '001',
+            id: '000',
             name: 'Dashboard',
-            icon: 'view-dashboard'
+            icon: 'view-dashboard',
+            url:'/dashboard'
+        },
+        {
+            id: '001',
+            name: 'Home',
+            icon: 'home',
+            url:'/summary'
+
         },
         {
             id: '002',
             name: 'Member',
-            icon: 'account-multiple'
+            icon: 'account-multiple',
+            url:'/member'
         },
         {
             id: '003',
             name: 'Project',
-            icon: 'domain'
+            icon: 'domain',
+            url:'/project'
         },
         {
             id: '004',
             name: 'Ticket',
-            icon: 'ticket'
+            icon: 'ticket',
+            url:'/project'
         },
         {
             id: '005',
             name: 'Working Time',
-            icon: 'clock'
+            icon: 'clock',
+            url:'/workingtime'
         },
         {
             id: '006',
             name: 'Planning&Schedule',
-            icon: 'calendar-text'
+            icon: 'calendar-text',
+            url:'/schedule'
         },
         {
             id: '007',
             name: 'Evaluation',
-            icon: 'certificate'
+            icon: 'certificate',
+            url:'/evaluation'
         },
         {
             id: '008',
             name: 'Setting',
-            icon: 'img/icons/ic_people_24px.svg'
+            icon: 'settings',
+            url:'/setting'
         },
     ];
 

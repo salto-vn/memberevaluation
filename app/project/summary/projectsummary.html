@@ -1,0 +1,212 @@
+<link rel="stylesheet" href="../project/summary/projectsummary.css">
+<div layout="column" ng-controller="ProjectSummaryController">
+    <div layout="row" layout-margin style="margin-bottom: 0px">
+        <div flex="30" hide-sm layout="column" class="md-whiteframe-1dp" layout-padding>
+            <div id="project-image" layout="row" layout-align="center center">
+                <img src="img/noimage.png" class="project-image">
+            </div>
+            <div id="project-state" style="text-align: center">
+                <md-icon md-svg-icon="heart-pulse" ng-class="{'md-accent': project.state === 0}">
+                </md-icon>
+                <span>Project A</span>
+            </div>
+            <div id="project-cup" layout="row" style="text-align: center">
+                <div flex="50">
+                    <md-icon md-svg-icon="certificate" class="md-primary">
+                    </md-icon>
+                    <span>30/100</span>
+                </div>
+                <div flex="50">
+                    <md-icon md-svg-icon="diamond" class="md-primary">
+                    </md-icon>
+                    <span>30</span>
+                </div>
+            </div>
+            <md-divider></md-divider>
+            <div id="project-infor" layout="column" layout-padding="" class="no-padding">
+                <label>Issue: Delay 8 man/days</label>
+                <label>Project Manager: Ngo A</label>
+                <label>Customer: A LAB</label>
+                <label>Cost: 3man/month</label>
+                <label>Members: 3</label>
+                <label>Release Date: 2017/12/12</label>
+            </div>
+        </div>
+        <div flex layout="column" flex-sm="100" class="md-whiteframe-1dp" layout-padding>
+            <div layout="row" layout-align="end end" class="no-margin no-padding">
+                <md-card flex="33">
+                    <md-card-title style="background-color: #319dff">
+                        <md-card-title-text class="no-padding">
+                            <span class="title-chart-head">80%</span>
+                            <span class="title-chart-sub">Progress</span>
+                        </md-card-title-text>
+                        <ng-md-icon class="img-chart-bg" icon="battery_charging_80" size="50px"></ng-md-icon>
+                    </md-card-title>
+
+                </md-card>
+                <md-card flex="33">
+                    <md-card-title style="background-color: {{project.burndownchart.colors[1]}}">
+                        <md-card-title-text class="no-padding">
+                            <span class="title-chart-head">200</span>
+                            <span class="title-chart-sub">Estimate Hours</span>
+                        </md-card-title-text>
+                        <ng-md-icon class="img-chart-bg" icon="timer" size="50px"></ng-md-icon>
+
+                    </md-card-title>
+                </md-card>
+                <md-card flex>
+                    <md-card-title style="background-color: {{project.burndownchart.colors[0]}}">
+                        <md-card-title-text>
+                            <span class="title-chart-head">200</span>
+                            <span class="title-chart-sub">Actual Hours</span>
+                        </md-card-title-text>
+                        <ng-md-icon class="img-chart-bg" icon="timelapse" size="50px"></ng-md-icon>
+                    </md-card-title>
+                </md-card>
+            </div>
+            <div layout="row" class="no-margin no-padding" layout-margin="">
+                <md-truncate flex></md-truncate>
+                <ng-md-icon icon="show_chart" style="fill:{{project.burndownchart.colors[0]}}"
+                            class=""></ng-md-icon>
+                <span class="legend-label">Ideal Line(Estimate)</span>
+                <ng-md-icon icon="show_chart" style="fill:{{project.burndownchart.colors[1]}}"
+                            class=""></ng-md-icon>
+                <span class="legend-label">Actual Line</span>
+            </div>
+            <canvas id="line" flex class="chart chart-line no-margin"
+                    chart-data="project.burndownchart.data"
+                    chart-labels="project.burndownchart.labels"
+                    chart-series="project.burndownchart.series"
+                    chart-options="project.burndownchart.options"
+                    chart-dataset-override="project.burndownchart.datasetOverride"
+                    chart-click="burndownChartOnClick"
+                    chart-colors="project.burndownchart.colors">
+            </canvas>
+        </div>
+    </div>
+    <div layout="row" layout-margin style="margin-top: 0px">
+        <div class="md-whiteframe-1dp" layout="column" flex="" layout-align="center">
+            <div class="panel-header">Progress</div>
+            <div layout="row" layout-wrap layout-padding>
+                <div flex="33" ng-repeat="chart in project.pieChart" ng-init="$total=0">
+                    <div layout="column" layout-padding layout-align="center">
+                        <canvas
+                                id="doughnut" class="chart chart-doughnut"
+                                chart-data="chart.data" chart-labels="chart.labels"
+                                chart-colors="chart.pieGraphColors"
+                                chart-options="project.pieGraphOptions">
+                        </canvas>
+                        <div flex style="text-align: center">
+                            {{chart.name}}
+                        </div>
+                        <div id="table-data" flex="" class="table" layout="row">
+                            <div layout="column" class="column">
+                                <div class="cell" ng-repeat="label in chart.labels;">
+                                    {{label}}
+                                </div>
+                            </div>
+                            <div layout="column" class="column">
+                                <div class="cell" ng-repeat="value in chart.data">
+                                    {{value;}}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <md-divider class="no-padding"></md-divider>
+            <div layout="column">
+                <md-table-container>
+                    <table md-table ng-model="selected">
+                        <thead md-head md-order="query.order" md-on-reorder="logOrder">
+                        <tr md-row>
+                            <th md-column md-order-by="id" md-numeric>ID</th>
+                            <th md-column md-order-by="tracker.value">Tracker</th>
+                            <th md-column md-order-by="status.value">Status</th>
+                            <th md-column>Subject</th>
+                            <th md-column md-order-by="assignTo">Assign To</th>
+                            <th md-column md-order-by="priority">Priority</th>
+                            <th md-column md-order-by="createDate">Create Date</th>
+                        </tr>
+                        <tr md-row>
+                            <td md-cell>
+                            </td>
+                            <td md-cell>
+                                <md-select ng-model="filter.tracker" placeholder="All"
+                                           aria-label="tracker">
+                                    <md-option ng-value="">All</md-option>
+                                    <md-option ng-repeat="tracker in trackers" ng-value="tracker.value">
+                                        {{tracker.value}}
+                                    </md-option>
+                                </md-select>
+                            </td>
+                            <td md-cell>
+                                <md-select ng-model="filter.status" placeholder="All"
+                                           aria-label="status">
+                                    <md-option ng-value="">All</md-option>
+                                    <md-option ng-repeat="status in statuses" ng-value="status.value">
+                                        {{status.value}}
+                                    </md-option>
+                                </md-select>
+                            </td>
+                            <td md-cell>
+                                <input width="100%" class="keyword" ng-model="filter.title"
+                                       placeholder="All"
+                                       aria-label="keyword">
+                            </td>
+                            <td md-cell>
+                                <md-select ng-model="filter.assignTo" aria-label="Assign To"
+                                           placeholder="All">
+                                    <md-option ng-value="">All</md-option>
+                                    <md-option ng-repeat="member in members" ng-value="member.name">
+                                        {{member.name}}
+                                    </md-option>
+                                </md-select>
+                            </td>
+                            <td md-cell>
+                                <md-select ng-model="filter.priority" aria-label="Priority"
+                                           placeholder="All">
+                                    <md-option ng-value="">All</md-option>
+                                    <md-option ng-repeat="pri in priority" ng-value="pri.value">
+                                        {{pri.value}}
+                                    </md-option>
+                                </md-select>
+                            </td>
+                            <td md-cell>
+                                <md-datepicker ng-model="filter.createDate" placeholder="Create Date"
+                                               md-hide-icons="calendar"
+                                               md-open-on-focus></md-datepicker>
+                            </td>
+                        </tr>
+                        </thead>
+                        <tbody md-body>
+                        <tr ng-click="openTicket(ticket)" md-row md-select="ticket" md-select-id="id"
+                            ng-repeat="ticket in tickets.data
+                                            | filter: {
+                                                    tracker:{value:filter.tracker},
+                                                    status:{value:filter.status},
+                                                    title:filter.title,
+                                                    assignTo:filter.assignTo,
+                                                    priority:filter.priority,
+                                                    createDate:filter.createDate.value,
+                                                }
+                                            | orderBy: query.order | limitTo: query.limit : (query.page -1) * query.limit">
+                            <td md-cell>{{ticket.id}}</td>
+                            <td md-cell>{{ticket.tracker.value}}</td>
+                            <td md-cell>{{ticket.status.value}}</td>
+                            <td md-cell>{{ticket.title}}</td>
+                            <td md-cell>{{ticket.assignTo}}</td>
+                            <td md-cell>{{ticket.priority}}</td>
+                            <td md-cell>{{ticket.createDate}}</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </md-table-container>
+
+                <md-table-pagination md-limit="query.limit" md-limit-options="[5, 10, 15]"
+                                     md-page="query.page" md-total="{{tickets.count}}"
+                                     md-on-paginate="getTickets" md-page-select></md-table-pagination>
+            </div>
+        </div>
+    </div>
+</div>

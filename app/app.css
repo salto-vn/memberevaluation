@@ -1,15 +1,15 @@
 /* app css stylesheet */
 
-.no-margin{
+.no-margin {
     margin: 0px !important;
-    padding-left: 5px!important;
-    padding-right: 0px!important;
+    /*padding-left: 5px!important;*/
+    padding-right: 0px !important;
     padding-top: 0px;
     padding-bottom: 0px;
 }
 
 .no-padding {
-    padding: 0px!important;
+    padding: 0px !important;
 }
 
 .sidebar {
@@ -18,7 +18,7 @@
 }
 
 .sidebar .topbutton {
-    margin-top: 5px!important;
+    margin-top: 5px !important;
 }
 
 .app-body {
@@ -28,26 +28,120 @@
 }
 
 .header {
-    height: 50px!important;
+    height: 50px !important;
 }
+
 .logo {
     width: 64px;
     height: 64px;
 }
 
-md-content{
-    color: #696e74;
+md-content {
     font-size: 13px;
     background-color: #FFFFFF;
 }
 
-.more-icon {
-    fill:#696e74;
-}
-
-.more-icon:hover {
-    fill:#009688;
+.help-icon:hover {
     cursor: pointer;
 }
 
+.table {
+    align-self: center;
+}
 
+.table > .column > .cell {
+    min-width: 100px;
+    max-width: 100%;
+    padding-top: 5px;
+    padding-bottom: 4px;
+    border-top: solid 1px #b3bdc6;
+}
+
+md-table-container > table > tbody > tr:hover {
+    background-color: rgba(0, 150, 136, 0.4);
+    cursor: pointer;
+}
+
+.legend-label {
+    padding-top: 5px;
+    margin-left: 0px;
+}
+
+.title-chart-head {
+    font-size: 18px;
+    color: #ffffff;
+
+}
+
+.title-chart-sub {
+    font-size: 13px;
+    color: #ffffff;
+}
+
+.md-card-content-sub {
+    font-size: 13px;
+    color: #b3bdc6;
+}
+
+.img-chart-bg {
+    margin-right: 20px;
+    margin-top: 0px;
+    margin-left: 0px;
+    float: left;
+    fill: #ececec;
+}
+
+.panel-header {
+    padding: 15px;
+    font-size: 16px;
+    background: #009788;
+    color: #fff;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    position: relative;
+    border-top-right-radius: 2px;
+    border-top-left-radius: 2px;
+}
+
+.panel-header .cog {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+
+.panel-body {
+    position: relative;
+    padding: 15px;
+}
+
+.table-header {
+    color:#fff;
+    font-weight: 400;
+    font-size: 12px;
+    background: rgba(0, 150, 136, 0.8);
+}
+
+
+.rating {
+    color: #a9a9a9;
+    margin: 0;
+    padding: 0;
+}
+ul.rating {
+    display: inline-block;
+}
+.rating li {
+    list-style-type: none;
+    display: inline-block;
+    padding: 1px;
+    text-align: center;
+    font-weight: bold;
+    cursor: pointer;
+    font-size:5px;
+}
+.rating .filled {
+    color: orangered;
+}
+.clear{
+    margin-top:20px;
+}

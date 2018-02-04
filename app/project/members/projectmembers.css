@@ -1,0 +1,13 @@
+.cell-icon {
+    padding-right: 5px;
+    margin: 0px;
+}
+
+.cell-value {
+    align-self: center;
+}
+
+.row-item {
+    min-width: 100px;
+    width: auto;
+}
