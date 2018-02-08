@@ -3,23 +3,27 @@
     <div layout="column" layout-padding>
         <md-table-container>
             <table md-table ng-model="selected" id="members">
-                <thead layout="row" layout-align="end end">
-                <span flex></span>
-                <md-input-container class="md-block">
-                    <md-icon md-svg-icon="magnify"></md-icon>
-                    <input ng-model="filter.freeword" type="text" placeholder="Filter">
-                </md-input-container>
+                <thead>
+                <div layout="row">
+                    <div flex="70" layout="row" layout-align="start center">
+                        <span class="list-title">Recent Members</span>
+                    </div>
+                    <md-input-container flex class="md-block" style="margin-bottom: 0px">
+                        <md-icon md-svg-icon="magnify"></md-icon>
+                        <input ng-model="filter.freeword" type="text" placeholder="Filter">
+                    </md-input-container>
+                </div>
                 </thead>
                 <tbody md-body>
                 <tr ng-click="openMember(member)" md-row md-select="member" md-select-id="id"
                     ng-repeat="member in members | filter: filter.freeword
                                                 | orderBy: query.order | limitTo: query.limit : (query.page -1) * query.limit">
                     <td md-cell layout="row">
-                        <div style="padding-top: 5px" layout="column">
+                        <div style="padding-top: 10px" layout="column">
                             <img src="../../img/noimage.png" height="50"/>
                             <div ng-repeat="rating in ratings">
                                 <!--<div star-rating rating-value="rating.current" max="rating.max" on-rating-selected="getSelectedRating(rating)"></div>-->
-                                <div star-rating rating-value="rating.current" max="rating.max"></div>
+                                <div star-rating rating-value="member.star" max="5" edit="false"></div>
                             </div>
                         </div>
                         <div layout="column">
@@ -30,33 +34,40 @@
                                 </div>
                                 <div layout="row" class="row-item">
                                     <md-icon class="cell-icon" md-svg-icon="account"></md-icon>
-                                    <span class="cell-value">{{member.name}}</span>
+                                    <span class="cell-value" style="width: 120px;">{{member.name}}</span>
                                 </div>
                                 <div layout="row" class="row-item">
-                                    <md-icon class="cell-icon" md-svg-icon="barcode"></md-icon>
+                                    <md-icon class="cell-icon" md-svg-icon="face"></md-icon>
                                     <span class="cell-value">{{member.role}}</span>
                                 </div>
                                 <div layout="row" class="row-item">
-                                    <md-icon class="cell-icon" md-svg-icon="barcode"></md-icon>
-                                    <span class="cell-value">{{member.point}}</span>
+                                    <md-icon class="cell-icon" md-svg-icon="diamond"></md-icon>
+                                    <span class="cell-value">{{member.point}} Point</span>
                                 </div>
                                 <div layout="row" class="row-item">
-                                    <md-icon class="cell-icon" md-svg-icon="barcode"></md-icon>
+                                    <md-icon class="cell-icon" md-svg-icon="at"></md-icon>
                                     <span class="cell-value">{{member.email}}</span>
                                 </div>
                             </div>
                             <div layout="row" class="no-padding" layout-padding>
                                 <div layout="row" class="row-item">
-                                    <md-icon class="cell-icon" md-svg-icon="barcode"></md-icon>
+                                    <md-icon class="cell-icon" md-svg-icon="note-outline"></md-icon>
                                     <span class="cell-value">{{member.tasks}} Tasks</span>
                                 </div>
                                 <div layout="row" class="row-item">
-                                    <md-icon class="cell-icon" md-svg-icon="barcode"></md-icon>
+                                    <md-icon class="cell-icon" md-svg-icon="bug"></md-icon>
                                     <span class="cell-value">{{member.bugs}} Bugs</span>
                                 </div>
                                 <div layout="row" class="row-item">
-                                    <md-icon class="cell-icon" md-svg-icon="barcode"></md-icon>
+                                    <md-icon class="cell-icon" md-svg-icon="file-question"></md-icon>
                                     <span class="cell-value">{{member.qas}} Questions</span>
+                                </div>
+                                <div layout="row" class="row-item">
+                                    <md-icon class="cell-icon" md-svg-icon="domain"></md-icon>
+                                    <div ng-repeat="project in member.projects" class="cell-value">
+                                        {{project.name }}
+                                        <span ng-if="$index < member.projects.length-1"> , </span>
+                                    </div>
                                 </div>
                             </div>
 
@@ -69,7 +80,7 @@
         </md-table-container>
 
         <md-table-pagination md-limit="query.limit" md-limit-options="[5, 10, 15]"
-                             md-page="query.page" md-total="{{members.count}}"
+                             md-page="query.page" md-total="{{members.length}}"
                              md-on-paginate="getTickets" md-page-select></md-table-pagination>
     </div>
 

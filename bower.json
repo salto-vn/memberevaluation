@@ -16,6 +16,7 @@
     "angular-resource": "1.6.x",
     "jquery": "3.2.x",
     "Chart.PieceLabel.js":"0.8.2",
-    "angular-material-data-table":"0.10.10"
+    "angular-material-data-table":"0.10.10",
+    "angular-chart.js":"1.1.1"
   }
 }

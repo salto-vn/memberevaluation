@@ -11,6 +11,7 @@ angular.module('memberevaluation.starRating', [])
             scope: {
                 ratingValue: '=',
                 max: '=',
+                edit: '=',
                 onRatingSelected: '&'
             },
             link: function (scope, elem, attrs) {
@@ -25,10 +26,12 @@ angular.module('memberevaluation.starRating', [])
                 };
 
                 scope.toggle = function (index) {
-                    scope.ratingValue = index + 1;
-                    scope.onRatingSelected({
-                        rating: index + 1
-                    });
+                    if(scope.edit) {
+                        scope.ratingValue = index + 1;
+                        scope.onRatingSelected({
+                            rating: index + 1
+                        });
+                    }
                 };
 
                 scope.$watch('ratingValue', function (oldVal, newVal) {

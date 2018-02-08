@@ -266,7 +266,6 @@ angular.module('memberevaluation.dashboard', ['memberevaluation.menus'])
                 $scope.barCharts = [
                     {
                         labels: ['Dev A', 'Dev B', 'Dev C', 'Dev D', 'Dev E', 'Dev F', 'Dev G','Dev A', 'Dev B', 'Dev C', 'Dev D', 'Dev E', 'Dev F', 'Dev G','Dev A', 'Dev B', 'Dev C', 'Dev D', 'Dev E', 'Dev F', 'Dev G'],
-                        // series: ['Coding Skill', 'Test Skill','Design Skill'],
                         data: [[''], [''], ['']],
                         options: {
                             legend:{
